@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -19,6 +21,12 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        val localProps = Properties().apply {
+            load(rootProject.file("local.properties").inputStream())
+        }
+
+        buildConfigField("String","apiKey","\"${localProps["TMDB_API"]}\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
