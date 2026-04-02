@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val repository = Repository()
+        val repository = Repository(applicationContext)
 
         val viewModelFactory = MovieViewModelFactory(repository)
 
